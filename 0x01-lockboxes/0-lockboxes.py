@@ -2,7 +2,15 @@
 
 
 def canUnlockAll(boxes):
-    """Function to unlock all boxes."""
+    """
+    Determines if all the boxes can be unlocked.
+
+    Args:
+        boxes: A lost of lists.
+
+    Returns:
+        True if all boxes can be unlocked, otherwise False.
+    """
 
     n = len(boxes)
     visited = [False] * n   # To track visited boxes
