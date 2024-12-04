@@ -12,16 +12,17 @@ def canUnlockAll(boxes):
         True if all boxes can be unlocked, otherwise False.
     """
 
+    if not boxes or not isinstance(boxes, list):
+        return False
+
     n = len(boxes)
-    visited = [False] * n   # To track visited boxes
-    visited[0] = True       # Box 0 is already unlocked
-    stack = [0]             # Start with box 0
+    unlocked = {0}
+    keys = set(boxes[0])
 
-    while stack:
-        box = stack.pop()
-        for key in boxes[box]:
-            if key < n and not visited[key]:
-                visited[key] = True
-                stack.append(key)
+    while keys:
+        key = keys.pop()
+        if key < n and key not in unlocked:
+            unlocked.add(key)
+            keys.update(boxes[key])
 
-    return all(visited)
+    return len(unlocked) == n
